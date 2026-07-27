@@ -1,0 +1,24 @@
+{
+  "name": "@topsun/auth",
+  "type": "module",
+  "exports": {
+    ".": {
+      "default": "./src/index.ts"
+    },
+    "./*": {
+      "default": "./src/*.ts"
+    }
+  },
+  "scripts": {},
+  "dependencies": {
+    "@topsun/db": "workspace:*",
+    "@topsun/env": "workspace:*",
+    "better-auth": "catalog:",
+    "dotenv": "catalog:",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@topsun/config": "workspace:*",
+    "typescript": "catalog:"
+  }
+}
