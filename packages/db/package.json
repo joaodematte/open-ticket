@@ -20,10 +20,10 @@
     "db:down": "docker compose down"
   },
   "dependencies": {
-    "@topsun/env": "workspace:*",
     "dotenv": "catalog:",
     "drizzle-orm": "^0.45.2",
     "pg": "^8.22.0",
+    "uuid": "^14.0.1",
     "zod": "catalog:"
   },
   "devDependencies": {

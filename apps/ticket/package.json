@@ -1,0 +1,42 @@
+{
+  "name": "@topsun/ticket",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "vite build",
+    "serve": "vite preview",
+    "dev": "vite dev"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^5.5.7",
+    "@tabler/icons-react": "catalog:",
+    "@tailwindcss/vite": "^4.3.2",
+    "@tanstack/react-form": "^1.33.0",
+    "@tanstack/react-query": "^5.101.2",
+    "@tanstack/react-router": "^1.170.17",
+    "@tanstack/react-router-ssr-query": "^1.167.1",
+    "@tanstack/react-start": "^1.168.27",
+    "@topsun/api": "workspace:*",
+    "@topsun/auth": "workspace:*",
+    "@topsun/ui": "workspace:*",
+    "@trpc/client": "catalog:",
+    "@trpc/server": "catalog:",
+    "@trpc/tanstack-react-query": "^11.18.0",
+    "better-auth": "catalog:",
+    "dotenv": "catalog:",
+    "next-themes": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "react-hook-form": "^7.83.0",
+    "tailwindcss": "catalog:",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@topsun/config": "workspace:*",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "@vitejs/plugin-react": "^6.0.3",
+    "typescript": "catalog:",
+    "vite": "^8.1.3"
+  }
+}

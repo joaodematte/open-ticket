@@ -13,7 +13,6 @@
   "dependencies": {
     "@topsun/auth": "workspace:*",
     "@topsun/db": "workspace:*",
-    "@topsun/env": "workspace:*",
     "@trpc/client": "catalog:",
     "@trpc/server": "catalog:",
     "dotenv": "catalog:",

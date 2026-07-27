@@ -11,8 +11,8 @@
   },
   "scripts": {},
   "dependencies": {
+    "@better-auth/i18n": "^1.6.25",
     "@topsun/db": "workspace:*",
-    "@topsun/env": "workspace:*",
     "better-auth": "catalog:",
     "dotenv": "catalog:",
     "zod": "catalog:"
