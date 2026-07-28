@@ -15,6 +15,8 @@ import { Route as PublicRouteRouteImport } from './routes/_public.route'
 import { Route as ProtectedDashboardRouteImport } from './routes/_protected.dashboard'
 import { Route as PublicSignInRouteImport } from './routes/_public.sign-in'
 import { Route as PublicSignUpRouteImport } from './routes/_public.sign-up'
+import { Route as ProtectedTicketTicketIdRouteImport } from './routes/_protected.ticket.$ticketId'
+import { Route as ProtectedTicketCreateRouteImport } from './routes/_protected.ticket.create'
 import { Route as ApiAuthSplatRouteImport } from './routes/api.auth.$'
 import { Route as ApiTrpcSplatRouteImport } from './routes/api.trpc.$'
 
@@ -46,6 +48,16 @@ const PublicSignUpRoute = PublicSignUpRouteImport.update({
   path: '/sign-up',
   getParentRoute: () => PublicRouteRoute,
 } as any)
+const ProtectedTicketTicketIdRoute = ProtectedTicketTicketIdRouteImport.update({
+  id: '/ticket/$ticketId',
+  path: '/ticket/$ticketId',
+  getParentRoute: () => ProtectedRouteRoute,
+} as any)
+const ProtectedTicketCreateRoute = ProtectedTicketCreateRouteImport.update({
+  id: '/ticket/create',
+  path: '/ticket/create',
+  getParentRoute: () => ProtectedRouteRoute,
+} as any)
 const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
   id: '/api/auth/$',
   path: '/api/auth/$',
@@ -62,6 +74,8 @@ export interface FileRoutesByFullPath {
   '/dashboard': typeof ProtectedDashboardRoute
   '/sign-in': typeof PublicSignInRoute
   '/sign-up': typeof PublicSignUpRoute
+  '/ticket/$ticketId': typeof ProtectedTicketTicketIdRoute
+  '/ticket/create': typeof ProtectedTicketCreateRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/api/trpc/$': typeof ApiTrpcSplatRoute
 }
@@ -70,6 +84,8 @@ export interface FileRoutesByTo {
   '/dashboard': typeof ProtectedDashboardRoute
   '/sign-in': typeof PublicSignInRoute
   '/sign-up': typeof PublicSignUpRoute
+  '/ticket/$ticketId': typeof ProtectedTicketTicketIdRoute
+  '/ticket/create': typeof ProtectedTicketCreateRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/api/trpc/$': typeof ApiTrpcSplatRoute
 }
@@ -81,16 +97,32 @@ export interface FileRoutesById {
   '/_protected/dashboard': typeof ProtectedDashboardRoute
   '/_public/sign-in': typeof PublicSignInRoute
   '/_public/sign-up': typeof PublicSignUpRoute
+  '/_protected/ticket/$ticketId': typeof ProtectedTicketTicketIdRoute
+  '/_protected/ticket/create': typeof ProtectedTicketCreateRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/api/trpc/$': typeof ApiTrpcSplatRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/dashboard' | '/sign-in' | '/sign-up' | '/api/auth/$' | '/api/trpc/$'
+    | '/'
+    | '/dashboard'
+    | '/sign-in'
+    | '/sign-up'
+    | '/ticket/$ticketId'
+    | '/ticket/create'
+    | '/api/auth/$'
+    | '/api/trpc/$'
   fileRoutesByTo: FileRoutesByTo
   to:
-    '/' | '/dashboard' | '/sign-in' | '/sign-up' | '/api/auth/$' | '/api/trpc/$'
+    | '/'
+    | '/dashboard'
+    | '/sign-in'
+    | '/sign-up'
+    | '/ticket/$ticketId'
+    | '/ticket/create'
+    | '/api/auth/$'
+    | '/api/trpc/$'
   id:
     | '__root__'
     | '/'
@@ -99,6 +131,8 @@ export interface FileRouteTypes {
     | '/_protected/dashboard'
     | '/_public/sign-in'
     | '/_public/sign-up'
+    | '/_protected/ticket/$ticketId'
+    | '/_protected/ticket/create'
     | '/api/auth/$'
     | '/api/trpc/$'
   fileRoutesById: FileRoutesById
@@ -155,6 +189,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PublicSignUpRouteImport
       parentRoute: typeof PublicRouteRoute
     }
+    '/_protected/ticket/$ticketId': {
+      id: '/_protected/ticket/$ticketId'
+      path: '/ticket/$ticketId'
+      fullPath: '/ticket/$ticketId'
+      preLoaderRoute: typeof ProtectedTicketTicketIdRouteImport
+      parentRoute: typeof ProtectedRouteRoute
+    }
+    '/_protected/ticket/create': {
+      id: '/_protected/ticket/create'
+      path: '/ticket/create'
+      fullPath: '/ticket/create'
+      preLoaderRoute: typeof ProtectedTicketCreateRouteImport
+      parentRoute: typeof ProtectedRouteRoute
+    }
     '/api/auth/$': {
       id: '/api/auth/$'
       path: '/api/auth/$'
@@ -174,10 +222,14 @@ declare module '@tanstack/react-router' {
 
 interface ProtectedRouteRouteChildren {
   ProtectedDashboardRoute: typeof ProtectedDashboardRoute
+  ProtectedTicketTicketIdRoute: typeof ProtectedTicketTicketIdRoute
+  ProtectedTicketCreateRoute: typeof ProtectedTicketCreateRoute
 }
 
 const ProtectedRouteRouteChildren: ProtectedRouteRouteChildren = {
   ProtectedDashboardRoute: ProtectedDashboardRoute,
+  ProtectedTicketTicketIdRoute: ProtectedTicketTicketIdRoute,
+  ProtectedTicketCreateRoute: ProtectedTicketCreateRoute,
 }
 
 const ProtectedRouteRouteWithChildren = ProtectedRouteRoute._addFileChildren(

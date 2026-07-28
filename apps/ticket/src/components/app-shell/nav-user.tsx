@@ -67,7 +67,7 @@ export function NavUser() {
             <IconSelector className="ml-auto size-4" />
           </DropdownMenuTrigger>
           <DropdownMenuContent
-            className="w-fit"
+            className="w-fit font-medium"
             side={isMobile ? "bottom" : "right"}
             align="end"
             sideOffset={4}

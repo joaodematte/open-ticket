@@ -24,3 +24,20 @@ export const protectedProcedure = t.procedure.use(({ ctx, next }) => {
     },
   });
 });
+
+export const adminProcedure = t.procedure.use(({ ctx, next }) => {
+  if (ctx.session?.user.role !== "admin") {
+    throw new TRPCError({
+      cause: "User is not an admin",
+      code: "UNAUTHORIZED",
+      message: "User is not an admin",
+    });
+  }
+
+  return next({
+    ctx: {
+      ...ctx,
+      session: ctx.session,
+    },
+  });
+});

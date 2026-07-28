@@ -52,3 +52,6 @@ export function createAuth() {
 }
 
 export const auth = createAuth();
+
+export type Session = typeof auth.$Infer.Session;
+export type User = typeof auth.$Infer.Session.user;

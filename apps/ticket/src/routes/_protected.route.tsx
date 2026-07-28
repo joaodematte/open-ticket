@@ -1,7 +1,11 @@
-import { createFileRoute, Outlet, redirect } from "@tanstack/react-router";
-import { SidebarInset, SidebarProvider } from "@topsun/ui/components/sidebar";
+import {
+  createFileRoute,
+  Link,
+  Outlet,
+  redirect,
+} from "@tanstack/react-router";
 
-import { AppSidebar } from "@/components/app-shell/app-sidebar";
+import { UserMenu } from "@/components/user-menu";
 import { getSessionFn } from "@/functions/get-session";
 
 export const Route = createFileRoute("/_protected")({
@@ -17,11 +21,15 @@ export const Route = createFileRoute("/_protected")({
 
 function RouteComponent() {
   return (
-    <SidebarProvider>
-      <AppSidebar variant="inset" />
-      <SidebarInset>
-        <Outlet />
-      </SidebarInset>
-    </SidebarProvider>
+    <main className="mx-auto w-full max-w-4xl px-6 py-24">
+      <header className="flex items-center justify-between">
+        <Link to="/dashboard">
+          <img src="/logo.png" alt="Logo" className="w-36" />
+        </Link>
+        <UserMenu />
+      </header>
+
+      <Outlet />
+    </main>
   );
 }
