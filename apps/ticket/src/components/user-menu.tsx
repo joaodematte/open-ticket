@@ -14,13 +14,7 @@ import {
 import { Skeleton } from "@topsun/ui/components/skeleton";
 
 import { authClient } from "@/lib/auth-client";
-
-function getUserNameInitials(name: string) {
-  return name
-    .split(" ")
-    .map((word) => word[0])
-    .join("");
-}
+import { getUserNameInitials } from "@/utils/user";
 
 export function UserMenu() {
   const navigate = useNavigate();

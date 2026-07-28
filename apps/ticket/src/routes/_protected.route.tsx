@@ -1,11 +1,6 @@
-import {
-  createFileRoute,
-  Link,
-  Outlet,
-  redirect,
-} from "@tanstack/react-router";
+import { createFileRoute, redirect } from "@tanstack/react-router";
 
-import { UserMenu } from "@/components/user-menu";
+import { ProtectedLayout } from "@/components/layout/protected-layout";
 import { getSessionFn } from "@/functions/get-session";
 
 export const Route = createFileRoute("/_protected")({
@@ -16,20 +11,5 @@ export const Route = createFileRoute("/_protected")({
       throw redirect({ to: "/sign-in" });
     }
   },
-  component: RouteComponent,
+  component: ProtectedLayout,
 });
-
-function RouteComponent() {
-  return (
-    <main className="mx-auto w-full max-w-4xl px-6 py-24">
-      <header className="flex items-center justify-between">
-        <Link to="/dashboard">
-          <img src="/logo.png" alt="Logo" className="w-36" />
-        </Link>
-        <UserMenu />
-      </header>
-
-      <Outlet />
-    </main>
-  );
-}

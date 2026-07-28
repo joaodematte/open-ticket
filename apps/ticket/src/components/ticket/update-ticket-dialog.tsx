@@ -1,6 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import type { RouterOutputs } from "@topsun/api/routers/index";
 import { Button } from "@topsun/ui/components/button";
 import {
   Dialog,
@@ -27,55 +26,16 @@ import {
 import { toast } from "@topsun/ui/components/toast";
 import { useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { z } from "zod";
 
+import {
+  createAssignableUsersOptions,
+  parseEstimatedHoursToSeconds,
+  UpdateTicketSchema,
+} from "@/components/ticket/update-ticket-schema";
+import type { UpdateTicketFormValues } from "@/components/ticket/update-ticket-schema";
 import { useUpdateDialogStore } from "@/stores/update-dialog";
 import { statusIcons, statusLabels, statusOptions } from "@/utils/ticket";
 import { useTRPC } from "@/utils/trpc";
-
-type User = RouterOutputs["ticket"]["getAssignableUsers"][number];
-
-const UpdateTicketSchema = z.object({
-  assigneeId: z.string().optional(),
-  estimatedTime: z
-    .string()
-    .optional()
-    .refine((value) => {
-      if (value === undefined || value.trim() === "") {
-        return true;
-      }
-
-      const hours = Number(value.replace(",", "."));
-
-      return Number.isFinite(hours) && hours >= 0;
-    }, "Informe um valor decimal válido"),
-  status: z.enum(["open", "in_progress", "closed", "cancelled"]),
-});
-
-type UpdateTicketFormValues = z.infer<typeof UpdateTicketSchema>;
-
-function parseEstimatedHoursToSeconds(
-  estimatedTimeHours: string | undefined
-): number | undefined {
-  if (estimatedTimeHours === undefined || estimatedTimeHours.trim() === "") {
-    return undefined;
-  }
-
-  const hours = Number(estimatedTimeHours.replace(",", "."));
-
-  return Math.round(hours * 3600);
-}
-
-function createAssignableUsersOptions(users: User[] | undefined) {
-  if (!users) {
-    return [];
-  }
-
-  return users.map((user) => ({
-    label: user.name,
-    value: user.id,
-  }));
-}
 
 export function UpdateTicketDialog() {
   const trpc = useTRPC();

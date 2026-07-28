@@ -1,5 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Link, useNavigate } from "@tanstack/react-router";
+import { useNavigate } from "@tanstack/react-router";
 import { Button } from "@topsun/ui/components/button";
 import {
   Field,
@@ -12,6 +12,7 @@ import { toast } from "@topsun/ui/components/toast";
 import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
 
+import { AuthLogo } from "@/components/auth/auth-logo";
 import { authClient } from "@/lib/auth-client";
 
 const SignUpSchema = z
@@ -66,13 +67,7 @@ export function SignUpForm() {
     <div className="flex flex-col gap-6">
       <form onSubmit={onSubmit}>
         <FieldGroup className="gap-4">
-          <Link to="/">
-            <img
-              src="/logo.png"
-              alt="TOPSUN Energia"
-              className="mx-auto w-42"
-            />
-          </Link>
+          <AuthLogo />
           <div className="flex flex-col gap-4 md:flex-row">
             <Controller
               name="firstName"
