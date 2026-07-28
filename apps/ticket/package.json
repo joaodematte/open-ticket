@@ -25,6 +25,7 @@
     "better-auth": "catalog:",
     "dotenv": "catalog:",
     "next-themes": "catalog:",
+    "nitro": "3.0.260610-beta",
     "react": "catalog:",
     "react-dom": "catalog:",
     "react-hook-form": "^7.83.0",
